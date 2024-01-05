@@ -1,0 +1,124 @@
+#root {
+  font-family: 'Gupter', serif;
+  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+body {
+  padding: 13.625rem 9.43919rem;
+  margin: 0;
+  background: var(--Gradiente, linear-gradient(180deg, #072041 0%, #154580 100%));
+}
+
+main {
+  border-radius: 2rem;
+  background: #E3F0FF;
+  display: flex;
+  padding: 2.5rem;
+  align-items: center;
+  gap: 2.5rem;
+  flex-shrink: 0;
+}
+
+section {
+  text-align: center;
+}
+
+p {
+  color: #144480;
+  font-family: Inter;
+  font-size: 1.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.25rem;
+}
+
+span {
+  font-family: Inter;
+  font-size: 1.75rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 2.25rem;
+}
+
+form {
+  background-color: white;
+  display: flex;
+  padding: 3rem 2rem;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  border-radius: 1rem;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.form-div {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.form-div-input {
+  width: 14.375rem;
+} 
+
+label {
+  color:#144480;
+  font-family: Inter;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+input {
+  height: 3.5rem;
+  align-self: stretch;
+
+  border-radius: 0.5rem;
+  border: 1px solid  #DCDCDC;
+  background: #FFF;
+  box-shadow: 2px 2px 4px 0px rgba(21, 69, 128, 0.10);
+
+  font-family: Inter;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  padding-left: .5rem;
+}
+
+button {
+  border: none;
+  color: #FFF;
+  text-align: center;
+  white-space: nowrap;
+  font-family: Inter;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.75rem;
+
+  display: flex;
+  padding: 1rem 9.25rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  align-self: stretch;
+
+  border-radius: 0.5rem;
+  background: #144480;
+  cursor: pointer;
+  transition: 0.7s;
+}
+
+button:hover {
+background: var(--Azul-Light, #1875E9);
+}
