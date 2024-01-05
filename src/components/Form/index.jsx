@@ -1,7 +1,7 @@
 import React from 'react';
 import * as yup from 'yup';
-import Input from './Input';
 import { phoneNumber, cep } from '../../utils/validation';
+// import InputErro from '../InputErro';
 
 export default function Form() {
   const [status, setStatus] = React.useState({
@@ -35,8 +35,6 @@ export default function Form() {
       message: 'Usuário cadastrado com sucesso!',
     });
 
-    console.log(user);
-
   }
 
   async function validate() {
@@ -56,7 +54,7 @@ export default function Form() {
     });
 
     try {
-      await validationSchema.validate(user);
+      validationSchema.validateSync(user);
       return true;
     } catch (erro) {
       setStatus({
@@ -74,23 +72,46 @@ export default function Form() {
 
       <div>
         <label>Nome</label>
-        <input type="text" />
+        <input type="text"
+          name="nome"
+          value={user.nome}
+          onChange={(evento) => { setUser({ ...user, nome: evento.target.value }) }}
+        />
+       {/* <InputErro/> */}
+        {console.log(status)}
+        {status.path === "nome" && status.type === 'erro' && <span>{status.message}</span>}
+
+        {/* {status.type === "erro" && <span>{status.message}</span>} */}
+
       </div>
       <div>
         <label>Email</label>
-        <input type="email" />
+        <input
+          value={user.email}
+          onChange={(evento) => { setUser({ ...user, email: evento.target.value }) }}
+        />
+        {status.path === "email" && status.type === 'erro' && <span>{status.message}</span>}
       </div>
       <div className="form-div">
         <div>
           <label>Telefone</label>
-          <input className="form-div-input" type="number" />
+          <input className="form-div-input"
+            value={user.telefone}
+            onChange={(evento) => { setUser({ ...user, telefone: evento.target.value }) }}
+          />
+          {status.path === "telefone" && status.type === 'erro' && <span>{status.message}</span>}
         </div>
         <div>
           <label>Cep</label>
-          <input className="form-div-input" type="number" />
+          <input className="form-div-input"
+            value={user.cep}
+            onChange={(evento) => { setUser({ ...user, cep: evento.target.value }) }}
+          />
+          {status.path === "cep" && status.type === 'erro' && <span>{status.message}</span>}
         </div>
+        
       </div>
-      <button onClick={() => { }}>
+      <button type='submit'>
         Quero participar!
       </button>
 

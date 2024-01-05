@@ -7,6 +7,16 @@
   margin: 0 auto;
 }
 
+.vermelho {
+  color: red;
+  font-weight: bold;
+}
+
+.verde {
+  color: green;
+  font-weight: bold;
+}
+
 body {
   padding: 13.625rem 9.43919rem;
   margin: 0;
