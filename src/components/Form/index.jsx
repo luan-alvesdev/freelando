@@ -17,10 +17,10 @@ export default function Form() {
     cep: '',
   });
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+  async function submeterFormulario(evento) {
+    evento.preventDefault();
 
-    if (!(await validate())) return;
+    if (!(await validacao())) return;
 
     setUser({
       nome: '',
@@ -37,8 +37,8 @@ export default function Form() {
 
   }
 
-  async function validate() {
-    const validationSchema = yup.object().shape({
+  async function validacao() {
+    const esquemaDeValidacao = yup.object().shape({
       cep: yup
       .string()
       .required('O campo cep é obrigatório'),
@@ -55,7 +55,7 @@ export default function Form() {
     });
 
     try {
-    await validationSchema.validate(user);
+    await esquemaDeValidacao.validate(user);
       return true;
     } catch (erro) {
       setStatus({
@@ -68,7 +68,7 @@ export default function Form() {
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={submeterFormulario}
     >
 
       <div>
@@ -79,7 +79,7 @@ export default function Form() {
           value={user.nome}
           onChange={(valor) => { setUser({ ...user, nome: valor.target.value }) }}
         />
-        {console.log(status)}
+        {console.log(status.message)}
         {status.path === "nome" && status.type === 'erro' && <span className="erro">{status.message}</span>}
       </div>
       <div>
