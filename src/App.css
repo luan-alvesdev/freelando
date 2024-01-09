@@ -96,6 +96,10 @@ input {
   padding-left: .5rem;
 }
 
+.input-erro {
+  border-color: red;
+}
+
 button {
   border: none;
   color: #FFF;
