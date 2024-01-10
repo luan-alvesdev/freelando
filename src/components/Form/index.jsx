@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import * as yup from 'yup';
-import InputSucess from '../InputSucess';
-import InputErro from '../InputErro';
+import CadastroRealizado from '../CadastroRealizado';
 import Input from './Input';
 
 export default function Form() {
@@ -71,8 +70,8 @@ export default function Form() {
         type="text"
         name="nome"
         label="Nome"
-        value={user.nome}
-        alterarDadosDosInputs={(value) => setUser({ ...user, nome: value })}
+        valor={user.nome}
+        enviarDadosDosInputs={(value) => setUser({ ...user, nome: value })}
         status={status}
       />
 
@@ -80,8 +79,8 @@ export default function Form() {
         type="email"
         name="email"
         label="Email"
-        value={user.email}
-        alterarDadosDosInputs={(value) => setUser({ ...user, email: value })}
+        valor={user.email}
+        enviarDadosDosInputs={(value) => setUser({ ...user, email: value })}
         status={status}
       />
       <div className="form-div">
@@ -89,8 +88,8 @@ export default function Form() {
           type="number"
           name="telefone"
           label="Telefone"
-          value={user.telefone}
-          alterarDadosDosInputs={(value) => setUser({ ...user, telefone: value })}
+          valor={user.telefone}
+          enviarDadosDosInputs={(value) => setUser({ ...user, telefone: value })}
           status={status}
         />
 
@@ -98,12 +97,12 @@ export default function Form() {
           type="number"
           name="cep"
           label="Cep"
-          value={user.cep}
-          alterarDadosDosInputs={(value) => setUser({ ...user, cep: value })}
+          valor={user.cep}
+          enviarDadosDosInputs={(value) => setUser({ ...user, cep: value })}
           status={status}
         />
       </div>
-      {status.type === 'sucesso' && <InputSucess status={status} />}
+      {status.type === 'sucesso' && <CadastroRealizado status={status} />}
       <button type='submit'>
         Quero participar!
       </button>

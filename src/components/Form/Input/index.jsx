@@ -1,10 +1,10 @@
-import InputErro from "../../InputErro";
+import CadastroComErro from "../../CadastroComErro";
 
 const Input = (props) => {
 
-  function alterarDadosDosInputs(evento) {
+  function enviarDadosDosInputs(evento) {
     evento.preventDefault();
-    props.alterarDadosDosInputs(evento.target.value);
+    props.enviarDadosDosInputs(evento.target.value);
   }
 
   return (
@@ -19,13 +19,14 @@ const Input = (props) => {
         }`}
         type={props.type}
         name={props.name}
-        value={props.value}
-        onChange={alterarDadosDosInputs}
+        valor={props.value}
+        onChange={enviarDadosDosInputs}
 
       />
-      {props.status.path === props.name && <InputErro status={props.status} />}
+      {props.status.path === props.name && <CadastroComErro status={props.status} />}
     </div>
   )
 }
 
 export default Input
+

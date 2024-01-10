@@ -1,4 +1,4 @@
-const InputErro = ({ status }) => {
+const CadastroComErro = ({ status }) => {
     return (
         <>
             {status.type === 'erro' && <span className="erro">{status.message}</span>}
@@ -6,4 +6,4 @@ const InputErro = ({ status }) => {
     )
 }
 
-export default InputErro
+export default CadastroComErro
