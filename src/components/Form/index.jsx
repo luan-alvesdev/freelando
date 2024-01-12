@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
-import * as yup from 'yup';
 import CadastroRealizado from '../CadastroRealizado';
 import Input from './Input';
+import useEsquemaDeValidacao from './hooks';
 
 export default function Form() {
-  const [status, setStatus] = useState({
-    type: '',
-    path: '',
-    message: '',
-  });
+  
+  const [status, setSucesso] = useState('');
 
-  const [user, setUser] = useState({
+  const [user, setErros] = useState({
     nome: '',
     email: '',
     telefone: '',
@@ -22,14 +19,14 @@ export default function Form() {
 
     if (!(await validacao())) return;
 
-    setUser({
+    setErros({
       nome: '',
       email: '',
       telefone: '',
       cep: '',
     });
 
-    setStatus({
+    setSucesso({
       type: 'sucesso',
       path: '',
       message: 'Usuário cadastrado com sucesso!',
@@ -37,31 +34,23 @@ export default function Form() {
   }
 
   async function validacao() {
-    const esquemaDeValidacao = yup.object().shape({
-      cep: yup
-        .string()
-        .required('O campo cep é obrigatório'),
-      telefone: yup
-        .string()
-        .required('O campo telefone é obrigatório'),
-      email: yup.
-        string().email('O email digitado é inválido').required('O campo email é obrigatório'),
-      nome: yup.
-        string().required('O campo nome é obrigatório'),
-    });
+
+    const esquemaDeValidacao = useEsquemaDeValidacao()
 
     try {
       await esquemaDeValidacao.validate(user);
       return true;
     } catch (erro) {
-      setStatus({
+      setSucesso({
         type: 'erro',
         path: erro.path,
         message: erro.errors,
       });
-      return false;
+      return false;  
     }
+    
   }
+  
 
   return (
     <form onSubmit={submeterFormulario}>
@@ -71,7 +60,7 @@ export default function Form() {
         name="nome"
         label="Nome"
         valor={user.nome}
-        enviarDadosDosInputs={(value) => setUser({ ...user, nome: value })}
+        enviarDadosDosInputs={(value) => setErros({ ...user, nome: value })}
         status={status}
       />
 
@@ -80,7 +69,7 @@ export default function Form() {
         name="email"
         label="Email"
         valor={user.email}
-        enviarDadosDosInputs={(value) => setUser({ ...user, email: value })}
+        enviarDadosDosInputs={(value) => setErros({ ...user, email: value })}
         status={status}
       />
       <div className="form-div">
@@ -89,7 +78,7 @@ export default function Form() {
           name="telefone"
           label="Telefone"
           valor={user.telefone}
-          enviarDadosDosInputs={(value) => setUser({ ...user, telefone: value })}
+          enviarDadosDosInputs={(value) => setErros({ ...user, telefone: value })}
           status={status}
         />
 
@@ -98,7 +87,7 @@ export default function Form() {
           name="cep"
           label="Cep"
           valor={user.cep}
-          enviarDadosDosInputs={(value) => setUser({ ...user, cep: value })}
+          enviarDadosDosInputs={(value) => setErros({ ...user, cep: value })}
           status={status}
         />
       </div>
@@ -108,5 +97,6 @@ export default function Form() {
       </button>
     </form>
   )
+  
 }
 

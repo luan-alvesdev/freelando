@@ -13,10 +13,10 @@ function App() {
       <main>
 
         <section>
-          <img src={imgLogo} className="vantagens" alt="" />
+          <img src={imgLogo} className="vantagens" alt="Logo ClickBônus" />
           <p>Preencha o formulário e participe do nosso <span>Clube de Vantagens!</span></p>
 
-          <img src={imgVantagens} className="vantagens" alt="" />
+          <img src={imgVantagens} className="vantagens" alt="Desenho de mulher com os braços abertos, com expressão alegre, olhando para caixas de presentes coloridas na sua frente." />
         </section>
 
         <Form />
