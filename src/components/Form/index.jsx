@@ -1,18 +1,12 @@
-import React, { useState } from 'react';
-import CadastroRealizado from '../CadastroRealizado';
-import Input from './Input';
-import useEsquemaDeValidacao from './hooks';
+import React, { useState } from 'react'; 
+import CadastroRealizado from '../CadastroRealizado'; 
+import Input from './Input'; 
+import useEsquemaDeValidacao from './hooks'; 
 
 export default function Form() {
-  
-  const [status, setSucesso] = useState('');
+  const [status, setStatus] = useState('');
 
-  const [user, setErros] = useState({
-    nome: '',
-    email: '',
-    telefone: '',
-    cep: '',
-  });
+  const [user, setErros] = useState({});
 
   async function submeterFormulario(evento) {
     evento.preventDefault();
@@ -26,22 +20,22 @@ export default function Form() {
       cep: '',
     });
 
-    setSucesso({
+    setStatus({
       type: 'sucesso',
       path: '',
       message: 'Usuário cadastrado com sucesso!',
     });
   }
 
+  const validarForm = useEsquemaDeValidacao()
+
   async function validacao() {
 
-    const esquemaDeValidacao = useEsquemaDeValidacao()
-
     try {
-      await esquemaDeValidacao.validate(user);
+      await validarForm.validate(user, { abortEarly: true });
       return true;
     } catch (erro) {
-      setSucesso({
+      setStatus({
         type: 'erro',
         path: erro.path,
         message: erro.errors,
@@ -51,7 +45,6 @@ export default function Form() {
     
   }
   
-
   return (
     <form onSubmit={submeterFormulario}>
 

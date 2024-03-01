@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const useEsquemaDeValidacao = () => {
+const useValidacaoFormulario = () => {
     return yup.object().shape({
             cep: yup
                 .string()
@@ -16,4 +16,4 @@ const useEsquemaDeValidacao = () => {
         })
 }
 
-export default useEsquemaDeValidacao
+export default useValidacaoFormulario
